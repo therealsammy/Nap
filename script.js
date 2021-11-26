@@ -1,92 +1,99 @@
-let detailsForm = document.querySelector('#destination_details_form');
+(function()
 
-detailsForm.addEventListener('submit', handleFormSubmit);
+    {
 
-function handleFormSubmit(event) {
+        "use strict";
 
-    event.preventDefault();
+        const detailsForm = document.querySelector('#destination_details_form');
 
-    // Collect information from the form
+        detailsForm.addEventListener('submit', handleFormSubmit);
 
-    let destName = event.target.elements['name'].value;
-    let destLocation = event.target.elements['location'].value;
-    let destPhoto = event.target.elements['photo'].value;
-    let destDesc = event.target.elements['description'].value;
+        function handleFormSubmit(event) {
 
-    // Clear the form
+            event.preventDefault();
 
-    for (let i = 0; i < detailsForm.length; i++) {
+            // Collect information from the form
 
-        detailsForm.elements[i].value = "";
-    }
+            const destName = event.target.elements['name'].value;
+            const destLocation = event.target.elements['location'].value;
+            const destPhoto = event.target.elements['photo'].value;
+            const destDesc = event.target.elements['description'].value;
 
-    // Create card here
+            // Clear the form
 
-    let destCard = createDestinationCard(destName, destLocation, destPhoto, destDesc);
+            for (let i = 0; i < detailsForm.length; i++) {
 
-    let wishListContainer = document.getElementById('destination_container');
+                detailsForm.elements[i].value = "";
+            }
 
-    if (wishListContainer.children.length === 0) {
-        document.getElementById('title').innerHTML = "My Wish List"
-    }
+            // Create card here
 
-    // Add the card
+            const destCard = createDestinationCard(destName, destLocation, destPhoto, destDesc);
 
-    document.querySelector('#destination_container').appendChild(destCard);
+            const wishListContainer = document.getElementById('destination_container');
+
+            if (wishListContainer.children.length === 0) {
+                document.getElementById('title').innerHTML = "My Wish List"
+            }
+
+            // Add the card
+
+            document.querySelector('#destination_container').appendChild(destCard);
 
 
 
-}
+        }
 
 
-function createDestinationCard(name, location, photoURL, description) {
+        function createDestinationCard(name, location, photoURL, description) {
 
-    let card = document.createElement('div');
-    card.className = 'card';
+            const card = document.createElement('div');
+            card.className = 'card';
 
-    let img = document.createElement('img');
-    img.setAttribute('alt', name);
+            const img = document.createElement('img');
+            img.setAttribute('alt', name);
 
-    let constantPhotoUrl = "images/signpost.jpg";
+            const constantPhotoUrl = "images/signpost.jpg";
 
-    if (photoURL.length === 0) {
-        img.setAttribute('src', constantPhotoUrl);
-    } else {
-        img.setAttribute('src', photoURL);
-    }
+            if (photoURL.length === 0) {
+                img.setAttribute('src', constantPhotoUrl);
+            } else {
+                img.setAttribute('src', photoURL);
+            }
 
-    card.appendChild(img);
+            card.appendChild(img);
 
-    let cardBody = document.createElement('div');
-    cardBody.className = 'card-body';
+            const cardBody = document.createElement('div');
+            cardBody.className = 'card-body';
 
-    let cardTitle = document.createElement('h3');
-    cardTitle.innerText = name;
-    cardBody.appendChild(cardTitle);
+            const cardTitle = document.createElement('h3');
+            cardTitle.innerText = name;
+            cardBody.appendChild(cardTitle);
 
-    let cardSubTitle = document.createElement('h4');
-    cardSubTitle.innerText = location;
-    cardBody.appendChild(cardSubTitle);
+            const cardSubTitle = document.createElement('h4');
+            cardSubTitle.innerText = location;
+            cardBody.appendChild(cardSubTitle);
 
-    if (description !== 0) {
-        let cardText = document.createElement('p');
-        cardText.className = 'card-text';
-        cardText.innerText = description;
-        cardBody.appendChild(cardText);
-    }
+            if (description !== 0) {
+                const cardText = document.createElement('p');
+                cardText.className = 'card-text';
+                cardText.innerText = description;
+                cardBody.appendChild(cardText);
+            }
 
-    let cardRemoveBtn = document.createElement('button');
-    cardRemoveBtn.innerText = 'Remove';
+            const cardRemoveBtn = document.createElement('button');
+            cardRemoveBtn.innerText = 'Remove';
 
-    cardRemoveBtn.addEventListener('click', removeDestination);
-    cardBody.appendChild(cardRemoveBtn);
+            cardRemoveBtn.addEventListener('click', removeDestination);
+            cardBody.appendChild(cardRemoveBtn);
 
-    card.appendChild(cardBody);
+            card.appendChild(cardBody);
 
-    return card;
-}
+            return card;
+        }
 
-function removeDestination(event) {
-    let card = event.target.parentElement.parentElement;
-    card.remove();
-}
+        function removeDestination(event) {
+            const card = event.target.parentElement.parentElement;
+            card.remove();
+        }
+    })();
