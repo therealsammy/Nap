@@ -9,6 +9,12 @@ body {
     color: #333;
 }
 
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: max-content auto 70px;
+}
+
 img {
     max-width: 100%;
 }
@@ -19,6 +25,7 @@ header {
     color: white;
     text-align: center;
     margin-bottom: 20px;
+    grid-column: 1 / -1;
 }
 
 main {
@@ -27,6 +34,7 @@ main {
     margin: auto;
     display: flex;
     justify-content: space-between;
+    grid-column: 1 / -1;
 }
 
 main form {
@@ -90,4 +98,29 @@ button {
 #destination_details_form button:hover,
 button:hover {
     background-color: rgb(121, 160, 233);
+}
+
+footer {
+    grid-column: 1 / -1;
+}
+
+
+/* Our Media Queries */
+
+@media (max-width: 575.98px) {
+    main {
+        max-width: 95pc;
+    }
+    /* main form {
+        width: 45%;
+    }
+    main article {
+        width: 50%;
+    } */
+    #title {
+        font-size: 12pt;
+    }
+    label {
+        font-size: 10pt;
+    }
 }
